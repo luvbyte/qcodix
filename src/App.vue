@@ -25,7 +25,7 @@
 
     <!-- Sidebar -->
     <div
-      class="fixed inset-0 z-20 full overflow-hidden"
+      class="fixed inset-0 z-[999] full overflow-hidden"
       @click.self="showSideBar = false"
       :class="{ 'pointer-events-none -z-20': !showSideBar }"
     >
