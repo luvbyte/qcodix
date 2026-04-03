@@ -15,7 +15,7 @@
 
 <template>
   <!-- Bottom Shortcut Bar -->
-  <div class="w-full p-2 bg-base-200 text-base-content">
+  <div class="w-full z-50 p-2 bg-base-200">
     <!-- Toggle Button -->
 
     <div class="relative w-full h-4">

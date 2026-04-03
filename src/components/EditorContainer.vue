@@ -44,6 +44,8 @@
     return editorMap[activeTab.value]?.value || null;
   });
 
+  const keyboardOffset = ref(0);
+
   // Layout state
 
   const layout = ref("editor");
@@ -70,6 +72,20 @@
 
     editor.runCommand(command);
   }
+  onMounted(() => {
+    const vv = window.visualViewport;
+
+    if (!vv) return;
+
+    const update = () => {
+      const heightDiff = window.innerHeight - vv.height;
+
+      // If keyboard is open
+      keyboardOffset.value = heightDiff > 100 ? heightDiff : 0;
+    };
+
+    vv.addEventListener("resize", update);
+  });
 </script>
 
 <template>
@@ -115,11 +131,16 @@
     <SearchReplace />
     -->
 
-    <ShortcutsPanel
-      v-if="
-        isMobile && activeTab !== 'preview' && !config.editorSettings.readOnly
-      "
-      @run="runCommand"
-    />
+    <div
+      class="fixed left-0 w-full z-50"
+      :style="{ bottom: keyboardOffset + 'px' }"
+    >
+      <ShortcutsPanel
+        v-if="
+          isMobile && activeTab !== 'preview' && !config.editorSettings.readOnly
+        "
+        @run="runCommand"
+      />
+    </div>
   </div>
 </template>

@@ -27,7 +27,7 @@ select, input {
 }
 
 .short-btn {
-  @apply btn btn-sm w-12 flex-shrink-0 snap-start;
+  @apply btn btn-sm btn-ghost w-12 flex-shrink-0 snap-start;
 }
 
 .rstyle {
